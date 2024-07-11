@@ -2,13 +2,12 @@
 
 namespace Flucava\RequestContext\CommandHandler;
 
+use Flucava\CqrsCore\Attribute\CommandHandler;
 use Flucava\RequestContext\Model\Command\RemoveContext;
 use Flucava\RequestContext\Model\Event\BeforeRemoveContext;
 use InvalidArgumentException;
 
-/**
- * @author Philipp Marien
- */
+#[CommandHandler(command: RemoveContext::class)]
 readonly class RemoveContextHandler extends AbstractHandler
 {
     public function handle(object $action): ?object

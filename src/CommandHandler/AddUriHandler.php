@@ -2,13 +2,12 @@
 
 namespace Flucava\RequestContext\CommandHandler;
 
+use Flucava\CqrsCore\Attribute\CommandHandler;
 use Flucava\RequestContext\Model\Command\AddUri;
 use Flucava\RequestContext\Model\Event\BeforeAddUri;
 use InvalidArgumentException;
 
-/**
- * @author Philipp Marien
- */
+#[CommandHandler(command: AddUri::class)]
 readonly class AddUriHandler extends AbstractHandler
 {
     public function handle(object $action): ?object

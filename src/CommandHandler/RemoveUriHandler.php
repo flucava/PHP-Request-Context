@@ -2,13 +2,12 @@
 
 namespace Flucava\RequestContext\CommandHandler;
 
+use Flucava\CqrsCore\Attribute\CommandHandler;
 use Flucava\RequestContext\Model\Command\RemoveUri;
 use Flucava\RequestContext\Model\Event\BeforeRemoveUri;
 use InvalidArgumentException;
 
-/**
- * @author Philipp Marien
- */
+#[CommandHandler(command: RemoveUri::class)]
 readonly class RemoveUriHandler extends AbstractHandler
 {
     public function handle(object $action): ?object
