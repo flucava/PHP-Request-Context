@@ -1,0 +1,23 @@
+{
+    "name": "flucava/request-context",
+    "description": "Library for request context logic",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Flucava\\RequestContext\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Philipp Marien",
+            "email": "philipp.marien@bootszentrum-hamburg.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "flucava/cqrs-core": "dev-main@dev",
+        "psr/event-dispatcher": "^1.0",
+        "psr/http-factory": "^1.1"
+    }
+}
