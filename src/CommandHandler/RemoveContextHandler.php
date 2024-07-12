@@ -18,6 +18,8 @@ readonly class RemoveContextHandler extends AbstractHandler
 
         $this->eventDispatcher->dispatch(new BeforeRemoveContext($action));
 
+        $this->ensureMainContext();
+
         $this->remove(
             $this->filenameProvider->getContextFilename($action->getUuid())
         );

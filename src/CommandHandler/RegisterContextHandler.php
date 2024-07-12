@@ -20,6 +20,8 @@ readonly class RegisterContextHandler extends AbstractHandler
 
         $this->eventDispatcher->dispatch(new BeforeRegisterContext($action));
 
+        $this->ensureMainContext();
+
         try {
             $this->store(
                 $this->filenameProvider->getContextFilename($action->getUuid()),

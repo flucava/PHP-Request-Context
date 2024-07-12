@@ -18,6 +18,8 @@ readonly class AddUriHandler extends AbstractHandler
 
         $this->eventDispatcher->dispatch(new BeforeAddUri($action));
 
+        $this->ensureMainContext();
+
         $this->store(
             $this->filenameProvider->getUriFilename($action->getUri()),
             $action->getContext()

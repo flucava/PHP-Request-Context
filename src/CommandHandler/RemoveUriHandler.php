@@ -18,6 +18,8 @@ readonly class RemoveUriHandler extends AbstractHandler
 
         $this->eventDispatcher->dispatch(new BeforeRemoveUri($action));
 
+        $this->ensureMainContext();
+
         $this->remove(
             $this->filenameProvider->getUriFilename($action->getUri())
         );
