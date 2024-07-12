@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a10efd3f0fd55ab2359ecf9093ad04a",
+    "content-hash": "c432f97079aae269c2277d75932e2f8f",
     "packages": [
         {
             "name": "flucava/cqrs-core",

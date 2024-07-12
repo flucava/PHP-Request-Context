@@ -17,11 +17,11 @@ readonly class FilenameProvider
 
     public function getUriFilename(string $uri): string
     {
-        return rtrim($this->storage, '/') . '/uri/' . strtolower($this->uriFactory->createUri($uri)->getHost());
+        return rtrim($this->storage, '/') . '/uri__' . strtolower($this->uriFactory->createUri($uri)->getHost());
     }
 
     public function getContextFilename(string $uuid): string
     {
-        return rtrim($this->storage, '/') . '/context/' . strtolower(trim($uuid)) . '.json';
+        return rtrim($this->storage, '/') . '/context__' . strtolower(trim($uuid)) . '.json';
     }
 }

@@ -13,8 +13,10 @@ use Throwable;
 #[QueryHandler(LoadContextById::class)]
 readonly class LoadContextByIdHandler implements HandlerInterface
 {
-    public function __construct(protected FilenameProvider $filenameProvider)
-    {
+    public function __construct(
+        protected FilenameProvider $filenameProvider,
+        private array $defaultSettings = []
+    ) {
     }
 
     /**
@@ -25,12 +27,25 @@ readonly class LoadContextByIdHandler implements HandlerInterface
     public function handle(object $action): ?object
     {
         if (!$action instanceof LoadContextById) {
-            return new InvalidContextException();
+            throw new InvalidContextException();
         }
 
         try {
+            $contextFile = $this->filenameProvider->getContextFilename($action->getId());
+            if (!file_exists($contextFile)) {
+                if ($action->getId() === Context::MASTER_ID) {
+                    return new Context(
+                        Context::MASTER_ID,
+                        Context::MASTER_NAME,
+                        $this->defaultSettings
+                    );
+                }
+
+                throw new InvalidContextException();
+            }
+
             $context = json_decode(
-                file_get_contents($this->filenameProvider->getContextFilename($action->getId())),
+                file_get_contents($contextFile),
                 true,
                 512,
                 JSON_THROW_ON_ERROR
@@ -38,7 +53,7 @@ readonly class LoadContextByIdHandler implements HandlerInterface
 
             return new Context($action->getId(), $context['name'], $context['settings']);
         } catch (Throwable $e) {
-            return new InvalidContextException($e);
+            throw new InvalidContextException($e);
         }
     }
 }
