@@ -14,6 +14,8 @@ use RuntimeException;
  */
 class ContextProvider
 {
+    public const CONTEXT_HEADER = 'x-flucava-context';
+
     private ?Context $context = null;
 
     public function __construct(private readonly QueryBus $queryBus)
@@ -31,7 +33,7 @@ class ContextProvider
             );
         } catch (InvalidContextException) {
             foreach ($headers as $header => $value) {
-                if (strtolower($header) !== 'x-flucava-request-context') {
+                if (strtolower($header) !== self::CONTEXT_HEADER) {
                     continue;
                 }
 
@@ -44,10 +46,6 @@ class ContextProvider
 
                 }
             }
-        }
-
-        if (!$this->context) {
-            throw new InvalidContextException();
         }
     }
 
