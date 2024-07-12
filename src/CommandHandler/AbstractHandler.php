@@ -23,7 +23,7 @@ readonly abstract class AbstractHandler implements HandlerInterface
 
     protected function ensureMainContext(): void
     {
-        if ($this->contextProvider->getContext()->getUuid() !== Context::MAIN_ID) {
+        if (!$this->contextProvider->getContext()->isMainContext()) {
             throw new InvalidContextException();
         }
     }
@@ -31,6 +31,15 @@ readonly abstract class AbstractHandler implements HandlerInterface
     protected function store(string $filename, string $content): void
     {
         file_put_contents($filename, $content);
+    }
+
+    protected function getContents(string $filename): ?string
+    {
+        if (!file_exists($filename)) {
+            return null;
+        }
+
+        return file_get_contents($filename);
     }
 
     protected function remove(string $filename): void

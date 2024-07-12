@@ -15,6 +15,11 @@ readonly class FilenameProvider
     ) {
     }
 
+    public function getInstanceManagerKeyFilename(): string
+    {
+        return rtrim($this->storage, '/') . '/INSTANCE_MANAGER_KEY.hash';
+    }
+
     public function getUriFilename(string $uri): string
     {
         return rtrim($this->storage, '/') . '/uri__' . strtolower($this->uriFactory->createUri($uri)->getHost());

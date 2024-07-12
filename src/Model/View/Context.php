@@ -22,6 +22,11 @@ readonly class Context
         return $this->uuid;
     }
 
+    public function isMainContext(): bool
+    {
+        return $this->getUuid() === self::MAIN_ID;
+    }
+
     public function getName(): string
     {
         return $this->name;
