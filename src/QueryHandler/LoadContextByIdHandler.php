@@ -51,7 +51,11 @@ readonly class LoadContextByIdHandler implements HandlerInterface
                 JSON_THROW_ON_ERROR
             );
 
-            return new Context($action->getId(), $context['name'], $context['settings']);
+            return new Context(
+                $action->getId(),
+                $context['name'],
+                array_merge_recursive($context['settings'], $this->defaultSettings)
+            );
         } catch (Throwable $e) {
             throw new InvalidContextException($e);
         }
