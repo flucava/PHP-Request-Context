@@ -7,8 +7,8 @@ namespace Flucava\RequestContext\Model\View;
  */
 readonly class Context
 {
-    public const string MASTER_ID = '00000000-0000-0000-0000-000000000000';
-    public const string MASTER_NAME = 'MASTER';
+    public const string MAIN_ID = '00000000-0000-0000-0000-000000000000';
+    public const string MAIN_NAME = 'MAIN CONTEXT';
 
     public function __construct(
         private string $uuid,

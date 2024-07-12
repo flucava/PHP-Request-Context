@@ -17,7 +17,7 @@ readonly class LoadContextByUriHandler extends LoadContextByIdHandler
     public function __construct(
         private UriFactoryInterface $uriFactory,
         FilenameProvider $filenameProvider,
-        private array $masterUris = [],
+        private array $mainUris = [],
         array $defaultSettings = [],
     ) {
         parent::__construct($filenameProvider, $defaultSettings);
@@ -41,8 +41,8 @@ readonly class LoadContextByUriHandler extends LoadContextByIdHandler
             $contextId = file_get_contents($uriFilename);
         } else {
             $uri = strtolower($this->uriFactory->createUri($action->getUri())->getHost());
-            if (in_array($uri, $this->masterUris, true)) {
-                $contextId = Context::MASTER_ID;
+            if (in_array($uri, $this->mainUris, true)) {
+                $contextId = Context::MAIN_ID;
             };
         }
 

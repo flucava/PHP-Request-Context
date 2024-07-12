@@ -33,10 +33,10 @@ readonly class LoadContextByIdHandler implements HandlerInterface
         try {
             $contextFile = $this->filenameProvider->getContextFilename($action->getId());
             if (!file_exists($contextFile)) {
-                if ($action->getId() === Context::MASTER_ID) {
+                if ($action->getId() === Context::MAIN_ID) {
                     return new Context(
-                        Context::MASTER_ID,
-                        Context::MASTER_NAME,
+                        Context::MAIN_ID,
+                        Context::MAIN_NAME,
                         $this->defaultSettings
                     );
                 }
