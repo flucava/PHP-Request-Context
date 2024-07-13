@@ -40,7 +40,7 @@ class ContextProvider
                 foreach ($values as $value) {
                     try {
                         $this->setContext(
-                            $this->queryBus->handle(new LoadContextById($values))
+                            $this->queryBus->handle(new LoadContextById($value))
                         );
                         break;
                     } catch (InvalidContextException) {
