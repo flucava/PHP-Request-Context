@@ -32,18 +32,20 @@ class ContextProvider
                 $this->queryBus->handle(new LoadContextByUri($uri))
             );
         } catch (InvalidContextException) {
-            foreach ($headers as $header => $value) {
+            foreach ($headers as $header => $values) {
                 if (strtolower($header) !== self::CONTEXT_HEADER) {
                     continue;
                 }
 
-                try {
-                    $this->setContext(
-                        $this->queryBus->handle(new LoadContextById($value))
-                    );
-                    break;
-                } catch (InvalidContextException) {
+                foreach ($values as $value) {
+                    try {
+                        $this->setContext(
+                            $this->queryBus->handle(new LoadContextById($values))
+                        );
+                        break;
+                    } catch (InvalidContextException) {
 
+                    }
                 }
             }
         }
